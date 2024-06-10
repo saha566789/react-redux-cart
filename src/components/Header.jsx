@@ -58,9 +58,16 @@ const Header = () => {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <div className="card_details">
-        <IoCloseSharp />
-        <p>Your cart is empty</p>
+        <div className="card_details d-flex justify-content-center align-items-center" style={{width:"24rem",padding:10,position:"relative"}}>
+        <IoCloseSharp 
+        onClick={handleClose}
+        style={{position:"absolute",
+          top:2,right:20,
+          fontSize:23,
+          cursor:"pointer"
+        }} />
+        <p style={{fontSize:22}}>Your cart is empty</p>
+        <img src="./cart.gif" alt="name" className="emptycart_img" style={{width:"5rem",padding:10}}></img>
         </div>
       </Menu>
 </nav>
