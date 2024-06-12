@@ -3,7 +3,7 @@ import Badge from '@mui/material/Badge';
 import { Link, NavLink } from "react-router-dom";
 import Menu from '@mui/material/Menu';
 // import MenuItem from '@mui/material/MenuItem';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 import {  useDispatch, useSelector } from "react-redux";
 import { Table } from "react-bootstrap";
@@ -11,7 +11,8 @@ import { AiFillDelete } from "react-icons/ai";
 import { DLT } from "../redux/actions/action";
 
 const Header = () => {
-
+  const [price,setPrice] = useState(0);
+  console.log(price)
   const getdata = useSelector((state)=>state.cartreducer.carts)
   // console.log(getdata)
   
@@ -27,9 +28,24 @@ const Header = () => {
     };
 
 
+   
     const dlt = (id) =>{
       dispatch(DLT(id))
     }
+
+    const total = () => {
+      let totalPrice = 0;
+      getdata.forEach((ele) => {
+        totalPrice += ele.price * ele.qnty;
+      });
+      return totalPrice;
+    };
+  
+    useEffect(() => {
+      const totalPrice = total();
+      setPrice(totalPrice);
+    }, [getdata]);
+
 
 
     return (
@@ -114,7 +130,7 @@ const Header = () => {
                                             )
                                         })
                                     }
-                                    <p className='text-center'>Total :₹ 400</p>
+                                    <p className='text-center'>Total :₹{price}</p>
                                 </tbody>
                             </Table>
                         </div>:
