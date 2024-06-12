@@ -117,14 +117,14 @@ const Header = () => {
                                                             <p>{e.rname}</p>
                                                             <p>Price : ₹{e.price}</p>
                                                             <p>Quantity : {e.qnty}</p>
-                                                            <p className="lg:hidden" style={{color:"red",fontSize:20,cursor:"pointer"}} onClick={()=>dlt(e.id)} >
+                                                            <p className="smalltrash" style={{color:"red",fontSize:20,cursor:"pointer" }} onClick={()=>dlt(e.id)} >
                                                             <AiFillDelete />
                                                             </p>
                                                         </td>
 
-                                                        <td className='mt-5 hidden'style={{color:"red",fontSize:20,cursor:"pointer"}} onClick={()=>dlt(e.id)} >
+                                                        <td className='mt-5 largetrash 'style={{color:"red",fontSize:20,cursor:"pointer"}} onClick={()=>dlt(e.id)} >
                                                         <AiFillDelete  />
-                                                        </td>
+                                                        </td> 
                                                     </tr>
                                                 </>
                                             )
