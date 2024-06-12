@@ -11,10 +11,10 @@ import { ADD } from "../redux/actions/action"
 const Cards = () => {
 
     const [data, setData] = useState(CardData)
-     
+   
     const dispatch = useDispatch()
     const send = (element)=>{
-        // console.log(e);
+        // console.log(element);
         dispatch(ADD(element));
       }
     return (

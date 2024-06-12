@@ -5,16 +5,24 @@ const INIT_STATE ={
 }
 
 
-
-
 export const cartreducer = (state=INIT_STATE,action)=>{
     switch(action.type){
-        case"ADD_Cart":
+        case"ADD_CART":
         return{
             ...state,
             carts:[...state.carts,action.payload]
         }
-        default :
+
+        case "RMV_CART":
+            const data = state.carts.filter((el)=>el.id !== action.payload); 
+           
+
+            return {
+                ...state,
+                carts:data
+            }
+
+                    default :
         return state
     }
 }

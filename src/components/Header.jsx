@@ -5,15 +5,17 @@ import Menu from '@mui/material/Menu';
 // import MenuItem from '@mui/material/MenuItem';
 import { useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
-import {  useSelector } from "react-redux";
+import {  useDispatch, useSelector } from "react-redux";
 import { Table } from "react-bootstrap";
 import { AiFillDelete } from "react-icons/ai";
+import { DLT } from "../redux/actions/action";
 
 const Header = () => {
 
-  const getdata = useSelector((state)=>state.cartreducer)
-  console.log(getdata)
+  const getdata = useSelector((state)=>state.cartreducer.carts)
+  // console.log(getdata)
   
+  const dispatch = useDispatch()
 
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
@@ -23,6 +25,13 @@ const Header = () => {
     const handleClose = () => {
       setAnchorEl(null);
     };
+
+
+    const dlt = (id) =>{
+      dispatch(DLT(id))
+    }
+
+
     return (
         <nav className="navbar navbar-expand-lg bg-black" style={{height:"60px"}}>
   <div className="container-fluid mx-4">
@@ -68,7 +77,7 @@ const Header = () => {
         }}
       >
          {
-                        getdata.length ? 
+                      getdata.length !== 0 ? 
                         <div className='card_details' style={{width:"24rem",padding:10}}>
                             <Table>
                                 <thead>
@@ -92,20 +101,20 @@ const Header = () => {
                                                             <p>{e.rname}</p>
                                                             <p>Price : ₹{e.price}</p>
                                                             <p>Quantity : {e.qnty}</p>
-                                                            <p style={{color:"red",fontSize:20,cursor:"pointer"}} onClick={()=>dlt(e.id)}>
-                                                                <i className='fas fa-trash smalltrash'></i>
+                                                            <p className="lg:hidden" style={{color:"red",fontSize:20,cursor:"pointer"}} onClick={()=>dlt(e.id)} >
+                                                            <AiFillDelete />
                                                             </p>
                                                         </td>
 
-                                                        <td className='mt-5'style={{color:"red",fontSize:20,cursor:"pointer"}}  onClick={()=>dlt(e.id)}>
-                                                        <AiFillDelete />
+                                                        <td className='mt-5 hidden'style={{color:"red",fontSize:20,cursor:"pointer"}} onClick={()=>dlt(e.id)} >
+                                                        <AiFillDelete  />
                                                         </td>
                                                     </tr>
                                                 </>
                                             )
                                         })
                                     }
-                                    <p className='text-center'>Total :₹ {price}</p>
+                                    <p className='text-center'>Total :₹ 400</p>
                                 </tbody>
                             </Table>
                         </div>:
